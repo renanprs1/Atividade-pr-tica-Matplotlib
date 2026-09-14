@@ -1,0 +1,30 @@
+fig, ax = plt.subplots(figsize=(9, 5))
+
+im = ax.imshow(pivot.values, cmap='YlOrRd', aspect='auto')
+
+# Barra de cores
+cbar = plt.colorbar(im, ax=ax)
+cbar.set_label('Faturamento (R$)', rotation=270, labelpad=15)
+
+# Rótulos dos eixos
+ax.set_xticks(np.arange(len(pivot.columns)))
+ax.set_yticks(np.arange(len(pivot.index)))
+ax.set_xticklabels(pivot.columns)
+ax.set_yticklabels(pivot.index)
+
+# Anotando os valores dentro de cada célula
+for i in range(len(pivot.index)):
+    for j in range(len(pivot.columns)):
+        ax.text(j, i, f'{pivot.values[i, j]:,.0f}',
+                ha='center', va='center', color='black', fontsize=9)
+
+ax.set_title('Heatmap - Faturamento por Categoria e Estado',
+             fontsize=13, fontweight='bold')
+ax.set_xlabel('Estado')
+ax.set_ylabel('Categoria')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Salvando com 300 DPI e bbox ajustado
+plt.savefig('heatmap_vendas.png', dpi=300, bbox_inches='tight')
+plt.show()

@@ -1,0 +1,8 @@
+plt.figure(figsize=(9, 5))
+plt.hist(df['valor'], bins=10, color='mediumseagreen', edgecolor='black')
+plt.title('Distribuição dos Valores das Vendas', fontsize=14, fontweight='bold')
+plt.xlabel('Valor (R$)')
+plt.ylabel('Frequência')
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()

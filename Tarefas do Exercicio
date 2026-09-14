@@ -1,0 +1,12 @@
+vendas_categoria = df.groupby('categoria')['valor_venda'].sum().sort_values()
+
+plt.figure(figsize=(9, 5))
+plt.bar(vendas_categoria.index, vendas_categoria.values,
+        color='coral', edgecolor='black')
+plt.title('Total de Vendas por Categoria', fontsize=14, fontweight='bold')
+plt.xlabel('Categoria')
+plt.ylabel('Valor Total (R$)')
+plt.xticks(rotation=45, ha='right')
+plt.grid(axis='y', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()

@@ -1,0 +1,9 @@
+pivot = pd.pivot_table(
+    df,
+    values='valor_venda',
+    index='categoria',
+    columns='estado',
+    aggfunc='sum'
+).round(2)
+
+print(pivot)

@@ -1,0 +1,13 @@
+df_indexed = df.set_index('data')
+faturamento_mensal = df_indexed['valor_venda'].resample('ME').sum()
+
+plt.figure(figsize=(10, 5))
+plt.plot(faturamento_mensal.index, faturamento_mensal.values,
+         marker='o', linestyle='--', color='steelblue', linewidth=2)
+plt.title('Faturamento Mensal Total', fontsize=14, fontweight='bold')
+plt.xlabel('Mês')
+plt.ylabel('Faturamento (R$)')
+plt.grid(True, linestyle=':', alpha=0.6)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()

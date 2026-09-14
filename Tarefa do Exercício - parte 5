@@ -1,0 +1,23 @@
+# Cálculo da quantidade média por venda em cada mês
+qtd_media_mensal = df_indexed.groupby(pd.Grouper(freq='ME'))['quantidade'].mean()
+
+fig, ax1 = plt.subplots(figsize=(10, 5))
+
+# Eixo primário: barras de faturamento
+ax1.bar(faturamento_mensal.index, faturamento_mensal.values,
+        color='steelblue', width=20, alpha=0.7, label='Faturamento')
+ax1.set_xlabel('Mês')
+ax1.set_ylabel('Faturamento (R$)', color='steelblue')
+ax1.tick_params(axis='y', labelcolor='steelblue')
+
+# Eixo secundário: linha da quantidade média
+ax2 = ax1.twinx()
+ax2.plot(qtd_media_mensal.index, qtd_media_mensal.values,
+         color='crimson', marker='o', linewidth=2, label='Qtd. Média')
+ax2.set_ylabel('Quantidade Média por Venda', color='crimson')
+ax2.tick_params(axis='y', labelcolor='crimson')
+
+plt.title('Faturamento vs Quantidade Média por Venda', fontsize=13, fontweight='bold')
+plt.xticks(rotation=45)
+fig.tight_layout()
+plt.show()
